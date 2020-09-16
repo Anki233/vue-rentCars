@@ -1,5 +1,7 @@
 <template>
-  <div>首页</div>
+  <div class="amap-wrap">
+    <el-amap vid="amapDemo" class="amap-demo"></el-amap>
+  </div>
 </template>
 
 <script>
@@ -9,5 +11,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+.amap-wrap {
+  height: 100vh;
+}
 </style>
