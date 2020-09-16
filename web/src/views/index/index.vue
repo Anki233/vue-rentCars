@@ -1,12 +1,18 @@
 <template>
   <div class="amap-wrap">
-    <el-amap vid="amapDemo" class="amap-demo"></el-amap>
+    <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo"></el-amap>
   </div>
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "index",
+  data() {
+    return {
+      zoom: 14,
+      center: [114.332218,30.521972]
+    }
+  }
 }
 </script>
 
