@@ -1,23 +1,60 @@
 <template>
-  <div class="amap-wrap">
-    <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo"></el-amap>
+  <div>
+    <!--cars data渲染-->
+    <Cars/>
+    <!--地图-->
+    <Map/>
+    <!--会员-->
+    <div id="children-view" :class="[show ? 'open' : '']">
+      <router-view/>
+    </div>
+
   </div>
 </template>
 
 <script>
+import Map from "../amap/index"
+import Cars from "../cars/index"
+
 export default {
   name: "index",
+  components: {
+    Map,
+    Cars
+  },
   data() {
     return {
-      zoom: 14,
-      center: [114.332218,30.521972]
+      show: false
+    }
+  },
+  watch: {
+    "$route": {
+      handler(newValue) {
+        const routeName = newValue.name
+        this.show = routeName === "Index" ? false : true
+      }
     }
   }
 }
 </script>
 
 <style lang="scss">
-.amap-wrap {
-  height: 100vh;
+#children-view {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: -600px;
+  z-index: 101;
+  width: 410px;
+  background-color: #34393f;
+  -webkit-transition: all .3s ease 0s;
+  -moz-transition: all .3s ease 0s;
+  -ms-transition: all .3s ease 0s;
+  transition: all .3s ease 0s;
+
+  &.open {
+    right: 0;
+  }
 }
+
 </style>
